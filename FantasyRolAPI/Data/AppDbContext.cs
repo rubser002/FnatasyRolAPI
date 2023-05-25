@@ -1,6 +1,7 @@
 ﻿using FantasyRolAPI.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace FantasyRolAPI.Data
@@ -12,8 +13,31 @@ namespace FantasyRolAPI.Data
 
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            // Add seeding code here
+            
+
+            base.OnModelCreating(modelBuilder);
+        }
+
         public DbSet<User> Users { get; set; }
+        public DbSet<Ability> Ability { get; set; }
+        public DbSet<Bonus> Bonus { get; set; }
+        public DbSet<Character> Character { get; set; }
+        public DbSet<Class> Class { get; set; }
+        public DbSet<Item> Item { get; set; }
+        public DbSet<Weapon> Weapon { get; set; }
+        public DbSet<Armor> Armor { get; set; }
+        public DbSet<Race> Race { get; set; }
+        public DbSet<Spell> Spell { get; set; }
+        public DbSet<Subclass> Subclass { get; set; }
+
+
     }
+
 }
 
 

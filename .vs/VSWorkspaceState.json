@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\FantasyRolAPI",
+    "\\FantasyRolAPI\\Data",
+    "\\FantasyRolAPI\\DTOs",
+    "\\FantasyRolAPI\\Migrations",
+    "\\FantasyRolAPI\\Models"
   ],
-  "SelectedNode": "\\C:\\Users\\Ruben\\Source\\Repos\\rubser002\\FnatasyRolAPI",
   "PreviewInSolutionExplorer": false
 }

@@ -1,10 +1,10 @@
-﻿using FantasyRolAPI.Enums;
+﻿using FantasyRolAPI.Data;
+using FantasyRolAPI.Enums;
 
 namespace FantasyRolAPI.Models
 {
-    public class Spell
+    public class Spell : BaseEntity
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public School_Type School { get; set; }

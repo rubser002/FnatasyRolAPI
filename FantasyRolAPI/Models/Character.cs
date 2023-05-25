@@ -1,13 +1,13 @@
-﻿using FantasyRolAPI.Enums;
+﻿using FantasyRolAPI.Data;
+using FantasyRolAPI.Enums;
 using System.Diagnostics;
 using System.Reflection.PortableExecutable;
 using System.Security.Claims;
 
 namespace FantasyRolAPI.Models
 {
-    public class Character
+    public class Character : BaseEntity
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Story { get; set; }
@@ -21,7 +21,7 @@ namespace FantasyRolAPI.Models
         public int? SubclassId { get; set; } // Foreign key for Subclass
 
         public int CurrentHitPoints { get; set; }
-        public int[] CurrentSpellSlots { get; set; }
+        public string CurrentSpellSlots { get; set; }
 
         public List<Item> Inventory { get; set; }
         public List<Ability> Abilities { get; set; }

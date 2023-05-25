@@ -3,6 +3,7 @@ using System;
 using FantasyRolAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FantasyRolAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230525213638_InitialMigration2")]
+    partial class InitialMigration2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -178,11 +181,38 @@ namespace FantasyRolAPI.Migrations
                     b.ToTable("Class");
                 });
 
-            modelBuilder.Entity("FantasyRolAPI.Models.Item", b =>
+            modelBuilder.Entity("FantasyRolAPI.Models.Equipment", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
+
+                    b.Property<int?>("ArmoClass")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("DiceType")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("MinChracteristic")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("Modifier")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Equipment");
+                });
+
+            modelBuilder.Entity("FantasyRolAPI.Models.Item", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
 
                     b.Property<Guid?>("CharacterId")
                         .HasColumnType("char(36)");
@@ -329,6 +359,16 @@ namespace FantasyRolAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("1990c9ee-dd88-4be3-8130-c266f5021243"),
+                            Email = "rubser002@gmail.com",
+                            EmailConfirmed = true,
+                            Name = "ruben",
+                            Password = "1234"
+                        });
                 });
 
             modelBuilder.Entity("FantasyRolAPI.Models.Ability", b =>

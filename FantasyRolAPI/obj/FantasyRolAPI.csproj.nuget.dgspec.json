@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Proyectos\\proyectosRS\\FantasyRolAPI\\FantasyRolAPI\\FantasyRolAPI\\FantasyRolAPI.csproj": {}
+    "C:\\Users\\Ruben\\source\\repos\\rubser002\\FnatasyRolAPI\\FantasyRolAPI\\FantasyRolAPI.csproj": {}
   },
   "projects": {
-    "C:\\Proyectos\\proyectosRS\\FantasyRolAPI\\FantasyRolAPI\\FantasyRolAPI\\FantasyRolAPI.csproj": {
+    "C:\\Users\\Ruben\\source\\repos\\rubser002\\FnatasyRolAPI\\FantasyRolAPI\\FantasyRolAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Proyectos\\proyectosRS\\FantasyRolAPI\\FantasyRolAPI\\FantasyRolAPI\\FantasyRolAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Ruben\\source\\repos\\rubser002\\FnatasyRolAPI\\FantasyRolAPI\\FantasyRolAPI.csproj",
         "projectName": "FantasyRolAPI",
-        "projectPath": "C:\\Proyectos\\proyectosRS\\FantasyRolAPI\\FantasyRolAPI\\FantasyRolAPI\\FantasyRolAPI.csproj",
-        "packagesPath": "C:\\Users\\rserrano\\.nuget\\packages\\",
-        "outputPath": "C:\\Proyectos\\proyectosRS\\FantasyRolAPI\\FantasyRolAPI\\FantasyRolAPI\\obj\\",
+        "projectPath": "C:\\Users\\Ruben\\source\\repos\\rubser002\\FnatasyRolAPI\\FantasyRolAPI\\FantasyRolAPI.csproj",
+        "packagesPath": "C:\\Users\\Ruben\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Ruben\\source\\repos\\rubser002\\FnatasyRolAPI\\FantasyRolAPI\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\rserrano\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Ruben\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -58,6 +63,10 @@
               "target": "Package",
               "version": "[7.0.5, )"
             },
+            "MySqlConnector": {
+              "target": "Package",
+              "version": "[2.2.6, )"
+            },
             "Pomelo.EntityFrameworkCore.MySql": {
               "target": "Package",
               "version": "[7.0.0, )"
@@ -90,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }

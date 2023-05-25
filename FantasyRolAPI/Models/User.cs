@@ -1,12 +1,13 @@
-﻿namespace FantasyRolAPI.Models
+﻿using FantasyRolAPI.Data;
+
+namespace FantasyRolAPI.Models
 {
-    public class User
+    public class User : BaseEntity
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string? EmailConfirmed { get; set; }
+        public bool? EmailConfirmed { get; set; }
 
     }
 }

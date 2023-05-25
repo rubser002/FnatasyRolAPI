@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Text;
 using FantasyRolAPI.Models;
 using FantasyRolAPI.Services.AuthServices;
+using FantasyRolAPI.Services.UserServices;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -14,17 +15,21 @@ public class AuthController : ControllerBase
 {
     private readonly IConfiguration _configuration;
     private readonly IAuthService authService;
+    private readonly IUserService userService;
 
-    public AuthController(IConfiguration configuration, IAuthService authService)
+    public AuthController(IConfiguration configuration, IAuthService authService, IUserService userService)
     {
         _configuration = configuration;
-        authService = authService;
+        this.authService = authService;
+        this.userService = userService;
     }
+
+
 
     [HttpPost("login")]
     public async Task<IActionResult> LoginAsync(LoginRequest request)
     {
-        if (await authService.IsValidUser(request.Email, request.Password))
+        if (userService.IsValidUser(request.Email, request.Password))
         {
             var token = GenerateToken(request.Email);
             return Ok(new { token });

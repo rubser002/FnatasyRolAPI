@@ -19,9 +19,13 @@ namespace FantasyRolAPI.Services.AuthServices
 
         public async Task<bool> IsValidUser(string email, string password)
         {
-            var User = await GetUserByEmail(email) != null;
+            var user = await GetUserByEmail(email);
+            if (user != null)
+            {
+                
+            }
 
-            return true;
+            return false;
         }
 
     }
