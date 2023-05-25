@@ -17,13 +17,12 @@ namespace FantasyRolAPI.Models
     {
         public int Damage { get; set; }
         public int Range { get; set; }
-        public WeaponType Type { get; set; }
+        public List<Weapon_Type> WeaponTypes { get; set; }
     }
 
     public class Armor : Item
     {
         public int ArmorClass { get; set; }
-        public ArmorType Type { get; set; }
-        // Add more properties specific to an armor
+        public Armor_Type ArmorType { get; set; }
     }
 }

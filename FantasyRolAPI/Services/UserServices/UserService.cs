@@ -4,28 +4,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FantasyRolAPI.Services.UserServices
 {
-    public class UserService
+    public class UserService : IUserService
     {
-        public class UserService : IUserService
+        private readonly AppDbContext _db;
+
+        public UserService(AppDbContext dbContext)
         {
-            private readonly AppDbContext _db;
+            _db = dbContext;
+        }
 
-            public UserService(AppDbContext dbContext)
-            {
-                _db = dbContext;
-            }
-
-            public void AddUser(User user)
-            {
-                _db.Users.Add(user);
-                _db.SaveChanges();
-            }
+        public void AddUser(User user)
+        {
+            _db.Users.Add(user);
+            _db.SaveChanges();
         }
     }
+}
+
+
+
+
     
 
-
-
-
-    }
-}
