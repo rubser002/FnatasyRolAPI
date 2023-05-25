@@ -7,5 +7,6 @@
         public string Description { get; set; }
         public int? Level { get; set; }
         public List<Bonus>? Bonuses { get; set; }
+        public string Identifier { get; set; }
     }
 }

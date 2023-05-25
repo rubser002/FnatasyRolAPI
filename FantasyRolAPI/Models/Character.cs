@@ -9,14 +9,20 @@ namespace FantasyRolAPI.Models
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string Story { get; set; }
 
         public int Level { get; set; }
-        public int ExperiencePoints { get; set; }
+        public int? ExperiencePoints { get; set; }
+
+
         public Race CharacterRace { get; set; }
         public Class CharacterClass { get; set; }
-        public Alignment_Type Alignment { get; set; }
-        public Subclass Subclass { get; set; }
+        public Alignment_Type? Alignment { get; set; }
+        public Subclass? Subclass { get; set; }
+        public Dictionary<Characteristics_Type,int> Characteristics { get; set; }
 
+        public int currentHitPoints { get; set; }
+        public int[] currentSpellSlots { get; set; }
 
         public List<Item> Inventory { get; set; }
         public List<Ability> Abilities { get; set; }
