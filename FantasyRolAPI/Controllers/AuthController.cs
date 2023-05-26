@@ -2,6 +2,9 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using AutoMapper;
+using FantasyRolAPI.Controllers;
+using FantasyRolAPI.DTOs.UserDTOs;
 using FantasyRolAPI.Models;
 using FantasyRolAPI.Services.AuthServices;
 using FantasyRolAPI.Services.UserServices;
@@ -11,49 +14,79 @@ using Microsoft.IdentityModel.Tokens;
 
 [Route("api/auth")]
 [ApiController]
-public class AuthController : ControllerBase
+public class AuthController: BaseController
 {
     private readonly IConfiguration _configuration;
     private readonly IAuthService authService;
-    private readonly IUserService userService;
 
-    public AuthController(IConfiguration configuration, IAuthService authService, IUserService userService)
+    public AuthController(IConfiguration configuration, IMapper mapper, IAuthService authService, IUserService userService) : base( mapper)
     {
         _configuration = configuration;
         this.authService = authService;
-        this.userService = userService;
     }
-
-
 
     [HttpPost("login")]
-    public async Task<IActionResult> LoginAsync(LoginRequest request)
+    public async Task<IActionResult> LoginAsync(UserPostDTO userPost)
     {
-        if (userService.IsValidUser(request.Email, request.Password))
+        try
         {
-            var token = GenerateToken(request.Email);
-            return Ok(new { token });
-        }
+            var user = _mapper.Map<User>(userPost);
 
-        return Unauthorized();
-    }
+            bool isAuthenticated = await authService.Login(user);
 
-    
-
-    private string GenerateToken(string email)
-    {
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Secret"]);
-        var tokenDescriptor = new SecurityTokenDescriptor
-        {
-            Subject = new ClaimsIdentity(new[]
+            if (isAuthenticated)
             {
-                new Claim(ClaimTypes.Name, email)
-            }),
-            Expires = DateTime.UtcNow.AddMinutes(1), 
-            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-        };
-        var token = tokenHandler.CreateToken(tokenDescriptor);
-        return tokenHandler.WriteToken(token);
+                string token = authService.GenerateToken(user.Email);
+                return Ok(new { token });
+            }
+
+            return Unauthorized();
+        }
+        catch (Exception ex)
+        {
+            return Unauthorized(ex.Message);
+        }
     }
+
+
+    [HttpPost("register")]
+    public async Task<IActionResult> RegisterAsync(UserPostDTO userPost)
+    {
+        try
+        {
+            var user = _mapper.Map<User>(userPost);
+
+            bool isRegistered = await authService.Register(user);
+
+            if (isRegistered)
+            {
+                string token = authService.GenerateToken(user.Email);
+                return Ok(new { token });
+            }
+
+            return Unauthorized();
+        }
+        catch (Exception ex)
+        {
+            return Unauthorized(ex.Message);
+        }
+    }
+
+
+    [HttpGet("check-token")]
+    public IActionResult CheckToken(string token)
+    {
+        bool isTokenValid = authService.IsTokenValid(token);
+
+        if (isTokenValid)
+        {
+            return Ok(isTokenValid);
+        }
+        else
+        {
+            return Unauthorized();
+        }
+    }
+
+
 }

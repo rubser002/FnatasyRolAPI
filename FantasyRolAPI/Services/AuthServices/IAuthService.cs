@@ -4,8 +4,9 @@ namespace FantasyRolAPI.Services.AuthServices
 {
     public interface IAuthService
     {
-        Task<User> GetUserByEmail(string email);
-        Task<bool> IsValidUser(string email, string password);
-
+        Task<bool> Register(User user);
+        Task<bool> Login(User user);
+        bool IsTokenValid(string token);
+        string GenerateToken(string email);
     }
 }

@@ -1,13 +1,5 @@
 C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\appsettings.Development.json
 C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\appsettings.json
-C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\ClientApp\FantasyRol\FantasyRol\angular.json
-C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\ClientApp\FantasyRol\FantasyRol\package-lock.json
-C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\ClientApp\FantasyRol\FantasyRol\package.json
-C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\ClientApp\FantasyRol\FantasyRol\tsconfig.app.json
-C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\ClientApp\FantasyRol\FantasyRol\tsconfig.json
-C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\ClientApp\FantasyRol\FantasyRol\tsconfig.spec.json
-C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\ClientApp\FantasyRol\package-lock.json
-C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\ClientApp\FantasyRol\package.json
 C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\FantasyRolAPI.exe
 C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\FantasyRolAPI.deps.json
 C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\FantasyRolAPI.runtimeconfig.json
@@ -110,3 +102,6 @@ C:\Users\Ruben\Source\Repos\rubser002\FnatasyRolAPI\FantasyRolAPI\obj\Debug\net7
 C:\Users\Ruben\Source\Repos\rubser002\FnatasyRolAPI\FantasyRolAPI\obj\Debug\net7.0\FantasyRolAPI.pdb
 C:\Users\Ruben\Source\Repos\rubser002\FnatasyRolAPI\FantasyRolAPI\obj\Debug\net7.0\FantasyRolAPI.genruntimeconfig.cache
 C:\Users\Ruben\Source\Repos\rubser002\FnatasyRolAPI\FantasyRolAPI\obj\Debug\net7.0\ref\FantasyRolAPI.dll
+C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\System.Web.Cors.dll
+C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\AutoMapper.dll
+C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
