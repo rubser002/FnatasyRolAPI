@@ -2,6 +2,9 @@
 using FantasyRolAPI.Models;
 using FantasyRolAPI.Services.UserServices;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -11,11 +14,13 @@ namespace FantasyRolAPI.Services.AuthServices
     {
         private readonly AppDbContext _db;
         private readonly IUserService userService;
+        private readonly IConfiguration _configuration;
 
-        public AuthService(AppDbContext dbContext, IUserService userService)
+        public AuthService(IConfiguration configuration, AppDbContext dbContext, IUserService userService)
         {
             _db = dbContext;
             this.userService = userService;
+            _configuration = configuration;
         }
 
         public async Task<bool> Login(User user)
@@ -70,7 +75,46 @@ namespace FantasyRolAPI.Services.AuthServices
             string hashedInput = HashPassword(password);
             return hashedInput == hashedPassword;
         }
+        public bool IsTokenValid(string token)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var validationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["Jwt:Secret"])),
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateLifetime = true, 
+                ClockSkew = TimeSpan.Zero
+            };
 
+            try
+            {
+                tokenHandler.ValidateToken(token, validationParameters, out _);
+                return true;
+            }
+            catch(Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public string GenerateToken(string email)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Secret"]);
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[]
+                {
+                new Claim(ClaimTypes.Name, email)
+            }),
+                Expires = DateTime.UtcNow.AddDays(14),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
 
     }
 }

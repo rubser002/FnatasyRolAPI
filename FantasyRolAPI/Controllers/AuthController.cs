@@ -36,7 +36,7 @@ public class AuthController: BaseController
 
             if (isAuthenticated)
             {
-                string token = GenerateToken(user.Email);
+                string token = authService.GenerateToken(user.Email);
                 return Ok(new { token });
             }
 
@@ -60,7 +60,7 @@ public class AuthController: BaseController
 
             if (isRegistered)
             {
-                string token = GenerateToken(user.Email);
+                string token = authService.GenerateToken(user.Email);
                 return Ok(new { token });
             }
 
@@ -73,20 +73,20 @@ public class AuthController: BaseController
     }
 
 
-    private string GenerateToken(string email)
+    [HttpGet("check-token")]
+    public IActionResult CheckToken(string token)
     {
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Secret"]);
-        var tokenDescriptor = new SecurityTokenDescriptor
+        bool isTokenValid = authService.IsTokenValid(token);
+
+        if (isTokenValid)
         {
-            Subject = new ClaimsIdentity(new[]
-            {
-                new Claim(ClaimTypes.Name, email)
-            }),
-            Expires = DateTime.UtcNow.AddMinutes(1), 
-            SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
-        };
-        var token = tokenHandler.CreateToken(tokenDescriptor);
-        return tokenHandler.WriteToken(token);
+            return Ok(isTokenValid);
+        }
+        else
+        {
+            return Unauthorized();
+        }
     }
+
+
 }

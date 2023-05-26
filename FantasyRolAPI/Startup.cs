@@ -22,6 +22,7 @@ namespace FantasyRolAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
+            services.AddAutoMapper(typeof(Startup));
 
             // Retrieve connection string from configuration
             string connectionString = _configuration.GetConnectionString("DefaultConnection");

@@ -103,3 +103,5 @@ C:\Users\Ruben\Source\Repos\rubser002\FnatasyRolAPI\FantasyRolAPI\obj\Debug\net7
 C:\Users\Ruben\Source\Repos\rubser002\FnatasyRolAPI\FantasyRolAPI\obj\Debug\net7.0\FantasyRolAPI.genruntimeconfig.cache
 C:\Users\Ruben\Source\Repos\rubser002\FnatasyRolAPI\FantasyRolAPI\obj\Debug\net7.0\ref\FantasyRolAPI.dll
 C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\System.Web.Cors.dll
+C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\AutoMapper.dll
+C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

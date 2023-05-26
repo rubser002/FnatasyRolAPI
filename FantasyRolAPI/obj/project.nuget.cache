@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Ky3+rDWl1k3lWAGGiBWU3xFyPxvhKLU6nKh6Ux65xyp6GG/gVNi43QFjOqeqvGLsgVROKmFggw2xgKsf3BeRag==",
+  "dgSpecHash": "mqw1V/rgCOgTZHweNtw8EjO5EZcua/ZIRw2SzoWwkueVLNxk5kGS+tuz01H6X8/eLsaueI0+IuSQipO2i2VDEQ==",
   "success": true,
   "projectFilePath": "C:\\Proyectos\\proyectosRS\\FantasyRolAPI\\FantasyRolAPI\\FantasyRolAPI\\FantasyRolAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rserrano\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\rserrano\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",
     "C:\\Users\\rserrano\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\rserrano\\.nuget\\packages\\microsoft.aspnet.cors\\5.2.9\\microsoft.aspnet.cors.5.2.9.nupkg.sha512",
     "C:\\Users\\rserrano\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.5\\microsoft.aspnetcore.authentication.jwtbearer.7.0.5.nupkg.sha512",
