@@ -21,6 +21,8 @@ namespace FantasyRolAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
+
             // Retrieve connection string from configuration
             string connectionString = _configuration.GetConnectionString("DefaultConnection");
 
@@ -41,6 +43,13 @@ namespace FantasyRolAPI
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyOrigin()
+                    .AllowAnyHeader()
+                    .AllowAnyMethod();
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
