@@ -15,30 +15,56 @@ public class AuthController : ControllerBase
 {
     private readonly IConfiguration _configuration;
     private readonly IAuthService authService;
-    private readonly IUserService userService;
 
     public AuthController(IConfiguration configuration, IAuthService authService, IUserService userService)
     {
         _configuration = configuration;
         this.authService = authService;
-        this.userService = userService;
     }
-
-
 
     [HttpPost("login")]
-    public async Task<IActionResult> LoginAsync(LoginRequest request)
+    public async Task<IActionResult> LoginAsync(User user)
     {
-        if (userService.IsValidUser(request.Email, request.Password))
+        try
         {
-            var token = GenerateToken(request.Email);
-            return Ok(new { token });
-        }
+            bool isAuthenticated = await authService.Login(user);
 
-        return Unauthorized();
+            if (isAuthenticated)
+            {
+                string token = GenerateToken(user.Email);
+                return Ok(new { token });
+            }
+
+            return Unauthorized();
+        }
+        catch (Exception ex)
+        {
+            return Unauthorized(ex.Message);
+        }
     }
 
-    
+
+    [HttpPost("register")]
+    public async Task<IActionResult> RegisterAsync(User user)
+    {
+        try
+        {
+            bool isRegistered = await authService.Register(user);
+
+            if (isRegistered)
+            {
+                string token = GenerateToken(user.Email);
+                return Ok(new { token });
+            }
+
+            return Unauthorized();
+        }
+        catch (Exception ex)
+        {
+            return Unauthorized(ex.Message);
+        }
+    }
+
 
     private string GenerateToken(string email)
     {

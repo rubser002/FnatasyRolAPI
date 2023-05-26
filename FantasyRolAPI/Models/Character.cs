@@ -15,10 +15,10 @@ namespace FantasyRolAPI.Models
         public int Level { get; set; }
         public int? ExperiencePoints { get; set; }
 
-        public int CharacterRaceId { get; set; } // Foreign key for CharacterRace
-        public int CharacterClassId { get; set; } // Foreign key for CharacterClass
-        public int? AlignmentId { get; set; } // Foreign key for Alignment_Type
-        public int? SubclassId { get; set; } // Foreign key for Subclass
+        public int CharacterRaceId { get; set; } 
+        public int CharacterClassId { get; set; } 
+        public int? AlignmentId { get; set; } 
+        public int? SubclassId { get; set; } 
 
         public int CurrentHitPoints { get; set; }
         public string CurrentSpellSlots { get; set; }
@@ -27,7 +27,6 @@ namespace FantasyRolAPI.Models
         public List<Ability> Abilities { get; set; }
         public List<Spell> Spells { get; set; }
 
-        // Navigation properties
         public Race CharacterRace { get; set; }
         public Class CharacterClass { get; set; }
         public Alignment_Type Alignment { get; set; }
