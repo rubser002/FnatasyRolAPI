@@ -1,8 +1,10 @@
-﻿namespace FantasyRolAPI.Models
+﻿using FantasyRolAPI.Data;
+
+namespace FantasyRolAPI.Models
 {
-    public class Ability
+    public class Ability : BaseEntity
     {
-        public Guid Id { get; set; }
+
         public string Name { get; set; }
         public string Description { get; set; }
         public int? Level { get; set; }
