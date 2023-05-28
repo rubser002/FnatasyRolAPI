@@ -23,30 +23,31 @@ namespace FantasyRolAPI.Services.AuthServices
             _configuration = configuration;
         }
 
-        public async Task<bool> Login(User user)
+        public async Task<User> Login(User user)
         {
             var userDb = await userService.GetUserByEmail(user.Email);
 
             if (userDb != null)
             {
                 bool isPasswordValid = VerifyPassword(user.Password, userDb.Password);
-                return isPasswordValid;
+                if(isPasswordValid)
+                    return userDb;
+                
             }
 
-            return false;
+            return null;
         }
 
-        public async Task<bool> Register(User user)
+        public async Task<User> Register(User user)
         {
-            if (IsPasswordValid(user.Password))
+            var dbUser =await userService.GetUserByEmail(user.Email);
+            if (dbUser==null && IsPasswordValid(user.Password))
             {
                 user.Password = HashPassword(user.Password);
-                userService.AddUser(user);
 
-                return true;
+                return await userService.AddUserAsync(user);
             }
-
-            return false;
+            return null;
         }
 
         private bool IsPasswordValid(string password)

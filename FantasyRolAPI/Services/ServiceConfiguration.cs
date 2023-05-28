@@ -2,6 +2,7 @@
 {
     using FantasyRolAPI.Data;
     using FantasyRolAPI.Services.AuthServices;
+    using FantasyRolAPI.Services.CharacterServices;
     using FantasyRolAPI.Services.UserServices;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,7 @@
 
              services.AddScoped<IAuthService, AuthService>();
              services.AddScoped<IUserService, UserService>();
+             services.AddScoped<ICharacterService, CharacterService>();
 
         }
     }

@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Text;
 using AutoMapper;
 using FantasyRolAPI.Controllers;
+using FantasyRolAPI.DTOs;
 using FantasyRolAPI.DTOs.UserDTOs;
 using FantasyRolAPI.Models;
 using FantasyRolAPI.Services.AuthServices;
@@ -32,12 +33,14 @@ public class AuthController: BaseController
         {
             var user = _mapper.Map<User>(userPost);
 
-            bool isAuthenticated = await authService.Login(user);
+            var asDb = await authService.Login(user);
 
-            if (isAuthenticated)
+            if (asDb!=null)
             {
+                var result = _mapper.Map<UserMiniDTO>(asDb);
+
                 string token = authService.GenerateToken(user.Email);
-                return Ok(new { token });
+                return Ok(new { token,result });
             }
 
             return Unauthorized();
@@ -56,12 +59,14 @@ public class AuthController: BaseController
         {
             var user = _mapper.Map<User>(userPost);
 
-            bool isRegistered = await authService.Register(user);
+            var asDb = await authService.Register(user);
 
-            if (isRegistered)
+            if (asDb!=null)
             {
+                var result = _mapper.Map<UserMiniDTO>(asDb);
+
                 string token = authService.GenerateToken(user.Email);
-                return Ok(new { token });
+                return Ok(new { token, result });
             }
 
             return Unauthorized();

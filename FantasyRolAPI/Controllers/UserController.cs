@@ -23,11 +23,11 @@ namespace FantasyRolAPI.Controllers
         }
 
         [HttpPost("AddUser")]
-        public IActionResult AddUser(User user)
+        public async Task<IActionResult> AddUserAsync(User user)
         {
             try
             {
-                _userService.AddUser(user);
+                await _userService.AddUserAsync(user);
                 return Ok();
             }
             catch (ArgumentException ex)
@@ -38,11 +38,11 @@ namespace FantasyRolAPI.Controllers
 
         [HttpPost("UpdateUser")]
 
-        public IActionResult UpdateUser(User user)
+        public async Task<IActionResult> UpdateUserAsync(User user)
         {
             try
             {
-                _userService.UpdateUser(user);
+                await _userService.UpdateUserAsync(user);
                 return Ok();
             }
             catch (ArgumentException ex)

@@ -25,6 +25,9 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\" />
+    <Folder Include="Models\Chracter\" />
+    <Folder Include="Models\Class\" />
+    <Folder Include="Models\Item\" />
   </ItemGroup>
 
 </Project>

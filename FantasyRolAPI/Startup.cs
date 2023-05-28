@@ -1,5 +1,7 @@
 ﻿using FantasyRolAPI.Data;
 using FantasyRolAPI.Services.AuthServices;
+using FantasyRolAPI.Services.CharacteristicsServices;
+using FantasyRolAPI.Services.CharacterServices;
 using FantasyRolAPI.Services.UserServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Net;
 
 namespace FantasyRolAPI
 {
@@ -38,8 +41,14 @@ namespace FantasyRolAPI
             // Add other services and dependencies
              services.AddScoped<IAuthService, AuthService>();
              services.AddScoped<IUserService, UserService>();
+             services.AddScoped<ICharacteristicsService, CharacteristicsService>();
+             services.AddScoped<ICharacterService, CharacterService>();
+
+
 
             // Configure other dependencies and services
+
+            ServicePointManager.ServerCertificateValidationCallback += (sender, certificate, chain, sslPolicyErrors) => true;
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

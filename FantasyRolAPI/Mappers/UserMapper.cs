@@ -12,6 +12,12 @@ namespace FantasyRolAPI.Mappers
                 .ReverseMap();
             CreateMap<User, UserPostDTO>()
                 .ReverseMap();
+            CreateMap<UserMiniDTO, User>()
+                .ReverseMap();
+            CreateMap<UserPostDTO, User>()
+                .ReverseMap();
+
+
         }
     }
 }

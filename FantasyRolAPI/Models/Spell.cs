@@ -11,5 +11,6 @@ namespace FantasyRolAPI.Models
         public int SpellLevel { get; set; }
         public string Components { get; set; }
         public string SComponents { get; set; }
+
     }
 }

@@ -9,5 +9,7 @@ namespace FantasyRolAPI.Models
         public string Password { get; set; }
         public bool? EmailConfirmed { get; set; }
 
+        public List<Character>? Characters { get; set; }
+
     }
 }
