@@ -10,6 +10,9 @@ namespace FantasyRolAPI.Enums
         [Description("Dexterity")]
         Dex = 2,
 
+        [Description("Constitution")]
+        Con = 2,
+
         [Description("Intelligence")]
         Int = 3,
 

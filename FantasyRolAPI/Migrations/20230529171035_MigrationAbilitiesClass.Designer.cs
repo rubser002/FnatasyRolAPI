@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FantasyRolAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230528205416_ClassAbilityTableUpdate4")]
-    partial class ClassAbilityTableUpdate4
+    [Migration("20230529171035_MigrationAbilitiesClass")]
+    partial class MigrationAbilitiesClass
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

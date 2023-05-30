@@ -6,9 +6,9 @@ namespace FantasyRolAPI.Models
     public class Item : BaseEntity
     {
         public string Name { get; set; }
-        public string Description { get; set; }
-        public int Weight { get; set; }
-        public int Value { get; set; }
+        public string? Description { get; set; }
+        public int? Weight { get; set; }
+        public int? Value { get; set; }
     }
 
     public class Weapon : Item

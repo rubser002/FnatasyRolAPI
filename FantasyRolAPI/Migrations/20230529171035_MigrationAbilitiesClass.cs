@@ -5,7 +5,7 @@
 namespace FantasyRolAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class ClassAbilityTableUpdate4 : Migration
+    public partial class MigrationAbilitiesClass : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

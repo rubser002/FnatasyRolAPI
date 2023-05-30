@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FantasyRolAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230528210340_ClassAbilityTableUpdate5")]
-    partial class ClassAbilityTableUpdate5
+    [Migration("20230529171930_RelationalTablesUpdateError")]
+    partial class RelationalTablesUpdateError
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -190,42 +190,42 @@ namespace FantasyRolAPI.Migrations
 
             modelBuilder.Entity("FantasyRolAPI.Models.CharacterAbility", b =>
                 {
-                    b.Property<Guid>("CharacterId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<Guid>("AbilityId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("CharacterId1")
+                    b.Property<Guid>("CharacterId")
                         .HasColumnType("char(36)");
 
-                    b.HasKey("CharacterId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AbilityId");
 
-                    b.HasIndex("CharacterId1");
+                    b.HasIndex("CharacterId");
 
                     b.ToTable("CharacterAbility");
                 });
 
             modelBuilder.Entity("FantasyRolAPI.Models.CharacterSpell", b =>
                 {
-                    b.Property<Guid>("CharacterId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("AbilityId")
+                    b.Property<Guid>("CharacterId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("CharacterId1")
+                    b.Property<Guid>("SpellId")
                         .HasColumnType("char(36)");
 
-                    b.HasKey("CharacterId");
+                    b.HasKey("Id");
 
-                    b.HasIndex("AbilityId");
+                    b.HasIndex("CharacterId");
 
-                    b.HasIndex("CharacterId1");
+                    b.HasIndex("SpellId");
 
                     b.ToTable("CharacterSpell");
                 });
@@ -537,7 +537,7 @@ namespace FantasyRolAPI.Migrations
 
                     b.HasOne("FantasyRolAPI.Models.Character", "Character")
                         .WithMany("CharacterAbilities")
-                        .HasForeignKey("CharacterId1")
+                        .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -548,21 +548,21 @@ namespace FantasyRolAPI.Migrations
 
             modelBuilder.Entity("FantasyRolAPI.Models.CharacterSpell", b =>
                 {
-                    b.HasOne("FantasyRolAPI.Models.Ability", "Ability")
-                        .WithMany()
-                        .HasForeignKey("AbilityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("FantasyRolAPI.Models.Character", "Character")
                         .WithMany()
-                        .HasForeignKey("CharacterId1")
+                        .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Ability");
+                    b.HasOne("FantasyRolAPI.Models.Spell", "Spell")
+                        .WithMany()
+                        .HasForeignKey("SpellId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Character");
+
+                    b.Navigation("Spell");
                 });
 
             modelBuilder.Entity("FantasyRolAPI.Models.ClassAbility", b =>

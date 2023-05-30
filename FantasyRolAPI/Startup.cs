@@ -2,6 +2,8 @@
 using FantasyRolAPI.Services.AuthServices;
 using FantasyRolAPI.Services.CharacteristicsServices;
 using FantasyRolAPI.Services.CharacterServices;
+using FantasyRolAPI.Services.NewFolder;
+using FantasyRolAPI.Services.SpellServices;
 using FantasyRolAPI.Services.UserServices;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -43,6 +45,8 @@ namespace FantasyRolAPI
              services.AddScoped<IUserService, UserService>();
              services.AddScoped<ICharacteristicsService, CharacteristicsService>();
              services.AddScoped<ICharacterService, CharacterService>();
+             services.AddScoped<IAbilityService, AbilityService>();
+             services.AddScoped<ISpellService, SpellService>();
 
 
 

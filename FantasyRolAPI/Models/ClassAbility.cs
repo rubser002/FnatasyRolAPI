@@ -6,7 +6,6 @@ namespace FantasyRolAPI.Models
 {
     public class ClassAbility : BaseEntity
     {
-        
         public Guid ClassId { get; set; }
         public Guid AbilityId { get; set; }
 

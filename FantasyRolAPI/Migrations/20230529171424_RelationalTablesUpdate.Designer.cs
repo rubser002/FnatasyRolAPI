@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FantasyRolAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230528204031_ClassAbilityTableUpdate")]
-    partial class ClassAbilityTableUpdate
+    [Migration("20230529171424_RelationalTablesUpdate")]
+    partial class RelationalTablesUpdate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -190,42 +190,42 @@ namespace FantasyRolAPI.Migrations
 
             modelBuilder.Entity("FantasyRolAPI.Models.CharacterAbility", b =>
                 {
-                    b.Property<Guid>("CharacterId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<Guid>("AbilityId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("CharacterId1")
+                    b.Property<Guid>("CharacterId")
                         .HasColumnType("char(36)");
 
-                    b.HasKey("CharacterId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AbilityId");
 
-                    b.HasIndex("CharacterId1");
+                    b.HasIndex("CharacterId");
 
                     b.ToTable("CharacterAbility");
                 });
 
             modelBuilder.Entity("FantasyRolAPI.Models.CharacterSpell", b =>
                 {
-                    b.Property<Guid>("CharacterId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<Guid>("AbilityId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("CharacterId1")
+                    b.Property<Guid>("CharacterId")
                         .HasColumnType("char(36)");
 
-                    b.HasKey("CharacterId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AbilityId");
 
-                    b.HasIndex("CharacterId1");
+                    b.HasIndex("CharacterId");
 
                     b.ToTable("CharacterSpell");
                 });
@@ -254,21 +254,21 @@ namespace FantasyRolAPI.Migrations
 
             modelBuilder.Entity("FantasyRolAPI.Models.ClassAbility", b =>
                 {
-                    b.Property<Guid>("ClassId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
                     b.Property<Guid>("AbilityId")
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("ClassId1")
+                    b.Property<Guid>("ClassId")
                         .HasColumnType("char(36)");
 
-                    b.HasKey("ClassId");
+                    b.HasKey("Id");
 
                     b.HasIndex("AbilityId");
 
-                    b.HasIndex("ClassId1");
+                    b.HasIndex("ClassId");
 
                     b.ToTable("ClassAbility");
                 });
@@ -537,7 +537,7 @@ namespace FantasyRolAPI.Migrations
 
                     b.HasOne("FantasyRolAPI.Models.Character", "Character")
                         .WithMany("CharacterAbilities")
-                        .HasForeignKey("CharacterId1")
+                        .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -556,7 +556,7 @@ namespace FantasyRolAPI.Migrations
 
                     b.HasOne("FantasyRolAPI.Models.Character", "Character")
                         .WithMany()
-                        .HasForeignKey("CharacterId1")
+                        .HasForeignKey("CharacterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -575,7 +575,7 @@ namespace FantasyRolAPI.Migrations
 
                     b.HasOne("FantasyRolAPI.Models.Class", "Class")
                         .WithMany("ClassAbilities")
-                        .HasForeignKey("ClassId1")
+                        .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
