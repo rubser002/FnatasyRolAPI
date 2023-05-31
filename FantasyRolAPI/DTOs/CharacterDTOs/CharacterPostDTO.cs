@@ -1,4 +1,5 @@
-﻿using FantasyRolAPI.Enums;
+﻿using FantasyRolAPI.DTOs.AbilityDTO;
+using FantasyRolAPI.Enums;
 using FantasyRolAPI.Models;
 
 namespace FantasyRolAPI.DTOs.CharacterDTOs
@@ -20,5 +21,7 @@ namespace FantasyRolAPI.DTOs.CharacterDTOs
         public Guid? SubclassId { get; set; }
         public Background? Background { get; set; }
         public List<Bonus> Bonuses { get; set; }
+        
+
     }
 }

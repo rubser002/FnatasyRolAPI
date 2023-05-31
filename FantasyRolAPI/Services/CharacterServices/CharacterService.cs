@@ -2,6 +2,7 @@
 using FantasyRolAPI.Data;
 using FantasyRolAPI.DTOs.CharacterDTOs;
 using FantasyRolAPI.DTOs.ClassDTOs;
+using FantasyRolAPI.Enums;
 using FantasyRolAPI.Models;
 using FantasyRolAPI.Services.UserServices;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -24,16 +25,21 @@ namespace FantasyRolAPI.Services.CharacterServices
 
         public async Task<bool> AddAsync(Character character)
         {
+            character.Bonuses = AddMissingBonuses(character.Bonuses);
             
             _db.Add(character);
             await _db.SaveChangesAsync();
             return true;
         }
-        public async Task<CharacterMiniDTO> GetById(Guid Id)
+        public async Task<CharacterMiniDTO> GetById(Guid CharacterId, Guid UserId)
         {
-            var asDb = _db.Character.Where(c=>c.Id == Id).FirstOrDefaultAsync();
-            var result = _mapper.Map<CharacterMiniDTO>(asDb);
-            
+            var asDb = _db.Character.Where(c=>c.Id == CharacterId&& c.UserId == UserId);
+            if (asDb == null)
+            {
+                return null;
+            }
+            var result = await _mapper.ProjectTo<CharacterMiniDTO>(asDb).FirstAsync();
+
             return result;
         }
 
@@ -65,6 +71,36 @@ namespace FantasyRolAPI.Services.CharacterServices
 
         }
 
+        public List<Bonus> AddMissingBonuses(List<Bonus> bonuses)
+        {
+            List<Characteristics_Type> existingCharacteristics = bonuses.Select(b => b.characteristic).ToList();
 
+            foreach (Characteristics_Type characteristic in Enum.GetValues(typeof(Characteristics_Type)))
+            {
+                if (!existingCharacteristics.Contains(characteristic))
+                {
+                    Bonus missingBonus = new Bonus
+                    {
+                        characteristic = characteristic,
+                        bonusValue = 10
+                    };
+                    bonuses.Add(missingBonus);
+                }
+            }
+
+            return bonuses;
+        }
+
+        private bool HasBonusForCharacteristic(List<Bonus> bonuses, Characteristics_Type characteristic)
+        {
+            foreach (Bonus bonus in bonuses)
+            {
+                if (bonus.characteristic == characteristic)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

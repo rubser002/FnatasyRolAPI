@@ -66,7 +66,7 @@ namespace FantasyRolAPI.Controllers
         }
 
         [HttpPost("AddAbilitiesToCharacter")]
-        public async Task<IActionResult> AddAbilitiesToCharacter(Guid cahracterId, AbilityPostDTO[] abilitiesPost)
+        public async Task<IActionResult> AddAbilitiesToCharacter(Guid characterId, AbilityPostDTO[] abilitiesPost)
         {
             try
             {
@@ -76,9 +76,8 @@ namespace FantasyRolAPI.Controllers
                     var ability = _mapper.Map<Ability>(abilitiesPost);
                     abilities.Add(ability);
                 }
-
                 
-                await this._abilityService.AddAbilitiesToCharacter(cahracterId, abilities);
+                await this._abilityService.AddAbilitiesToCharacter(characterId, abilities);
                     return Ok();
                 
             }

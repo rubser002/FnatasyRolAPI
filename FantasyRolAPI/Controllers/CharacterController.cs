@@ -30,7 +30,8 @@ namespace FantasyRolAPI.Controllers
                     return BadRequest();
                 var character = _mapper.Map<Character>(characterPostDto);
                 await _characterService.AddAsync(character);
-                return Ok();
+                
+                return Ok(character.Id);
             }
             catch (ArgumentException ex)
             {
@@ -43,24 +44,25 @@ namespace FantasyRolAPI.Controllers
         {
             try
             {
-                
-
                 var characters = await _characterService.GetListCharacters(UserId, filter);
                 return Ok(characters);
             }
-            catch (ArgumentException ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
         }
 
         [HttpPost("GetCharacterById")]
-        public async Task<IActionResult> GetCharacterByIdAsync(Guid Id)
+        public async Task<IActionResult> GetCharacterByIdAsync(Guid CharacterId, Guid UserId)
         {
             try
             {
-                
-                var result =await _characterService.GetById(Id);
+                var result =await _characterService.GetById(CharacterId, UserId);
+                if (result == null)
+                {
+                    return NotFound();
+                }
                 return Ok(result);
             }
             catch (ArgumentException ex)

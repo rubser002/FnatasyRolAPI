@@ -1,4 +1,5 @@
-﻿using FantasyRolAPI.Enums;
+﻿using FantasyRolAPI.DTOs.BonusDTOs;
+using FantasyRolAPI.Enums;
 using FantasyRolAPI.Models;
 
 namespace FantasyRolAPI.DTOs.CharacterDTOs
@@ -13,13 +14,12 @@ namespace FantasyRolAPI.DTOs.CharacterDTOs
         public int Level { get; set; }
         public int? ExperiencePoints { get; set; }
         public Alignment_Type Alignment { get; set; }
+        public string AlignmentDescription { get; set; }
         public int? CurrentHitPoints { get; set; }
         public string? CurrentSpellSlots { get; set; }
-        public Guid UserId { get; set; }
-        public List<Item> Inventory { get; set; }
-        public List<CharacterAbility> CharacterAbilities { get; set; }
-        public List<Spell> Spells { get; set; }
-        public List<Bonus> Bonuses { get; set; }
+        public List<BonusMiniDTO> Bonuses { get; set; }
+        public Background Background { get; set; }
+
 
     }
 }

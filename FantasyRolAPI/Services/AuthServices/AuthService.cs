@@ -62,7 +62,7 @@ namespace FantasyRolAPI.Services.AuthServices
             return isValid;
         }
 
-        public string HashPassword(string password)
+        private string HashPassword(string password)
         {
             using (var sha256 = SHA256.Create())
             {

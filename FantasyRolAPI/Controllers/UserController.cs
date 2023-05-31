@@ -1,4 +1,5 @@
-﻿using FantasyRolAPI.Models;
+﻿using AutoMapper;
+using FantasyRolAPI.Models;
 using FantasyRolAPI.Services.AuthServices;
 using FantasyRolAPI.Services.UserServices;
 using Microsoft.AspNetCore.Mvc;
@@ -9,13 +10,13 @@ namespace FantasyRolAPI.Controllers
 {
     [ApiController]
     [Route("api/users")]
-    public class UserController : ControllerBase
+    public class UserController : BaseController
     {
         private readonly IConfiguration _configuration;
         
         private readonly IUserService _userService;
 
-        public UserController(IConfiguration configuration, IUserService userService)
+        public UserController(IConfiguration configuration, IMapper mapper, IUserService userService) : base(mapper)
         {
             _configuration = configuration;
             
