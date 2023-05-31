@@ -21,14 +21,47 @@ namespace FantasyRolAPI.Controllers
         }
 
 
-        [HttpPost("AddUser")]
-        public IActionResult AddCharacter(CharacterPostDTO characterPostDto)
+        [HttpPost("AddCharacter")]
+        public async Task<IActionResult> AddCharacterAsync(CharacterPostDTO characterPostDto)
         {
             try
             {
+                if (String.IsNullOrWhiteSpace(characterPostDto.Name))
+                    return BadRequest();
                 var character = _mapper.Map<Character>(characterPostDto);
-                _characterService.AddAsync(character);
+                await _characterService.AddAsync(character);
                 return Ok();
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("GetListCharacters")]
+        public async Task<IActionResult> GetListCharacters(Guid UserId, string filter = "")
+        {
+            try
+            {
+                
+
+                var characters = await _characterService.GetListCharacters(UserId, filter);
+                return Ok(characters);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("GetCharacterById")]
+        public async Task<IActionResult> GetCharacterByIdAsync(Guid Id)
+        {
+            try
+            {
+                
+                var result =await _characterService.GetById(Id);
+                return Ok(result);
             }
             catch (ArgumentException ex)
             {

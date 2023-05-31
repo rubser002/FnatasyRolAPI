@@ -1,4 +1,5 @@
-﻿using FantasyRolAPI.Data;
+﻿using AutoMapper;
+using FantasyRolAPI.Data;
 using FantasyRolAPI.DTOs.AbilityDTO;
 using FantasyRolAPI.DTOs.CharacterDTOs;
 using FantasyRolAPI.DTOs.ClassDTOs;
@@ -13,34 +14,35 @@ namespace FantasyRolAPI.Services.NewFolder
     {
         private readonly AppDbContext _db;
         private readonly IConfiguration _configuration;
+        private readonly IMapper _mapper;
 
-        public AbilityService(IConfiguration configuration, AppDbContext dbContext)
+        public AbilityService(IConfiguration configuration, AppDbContext dbContext, IMapper mapper)
         {
+            _mapper = mapper;
             _db = dbContext;
             _configuration = configuration;
         }
 
-        public async Task<List<Ability>> GetAbilitiesFromClassLevel(Guid classId, int lvl)
+        public async Task<List<AbilityMiniDTO>> GetAbilitiesFromClassLevel(Guid classId, int lvl)
         {
-            var classAbilities = await _db.Class
+            var classAbilities = _db.Class
                 .Where(c => c.Id == classId)
                 .SelectMany(c => c.ClassAbilities)
                 .Select(ca => ca.Ability).Where(a=>a.Level == lvl)
-                .ToListAsync();
-
-            return classAbilities;
+                ;
+            var result = await _mapper.ProjectTo<AbilityMiniDTO>(classAbilities).ToListAsync();
+            return result;
         }
 
 
-        public async Task<List<Ability>> GetAbilitiesFromCharacter(Guid characterId)
+        public async Task<List<AbilityMiniDTO>> GetAbilitiesFromCharacter(Guid characterId)
         {
-            var classAbilities = await _db.Character
+            var classAbilities =  _db.Character
                 .Where(c => c.Id == characterId)
                 .SelectMany(c => c.CharacterAbilities)
-                .Select(ca => ca.Ability)
-                .ToListAsync();
-
-            return classAbilities;
+                .Select(ca => ca.Ability);
+            var result =await _mapper.ProjectTo<AbilityMiniDTO>(classAbilities).ToListAsync();
+            return result;
         }
 
         public async Task AddAbilitiesToCharacter(Guid characterId, List<Ability> abilities)

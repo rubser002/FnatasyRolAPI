@@ -11,8 +11,10 @@ namespace FantasyRolAPI.Mappers
         public CharacterMapper()
         {
             CreateMap<Character, CharacterMiniDTO>()
+                .ForMember(dest => dest.ClassName, opt => opt.MapFrom(src => src.CharacterClass.Name))
                 .ReverseMap();
             CreateMap<Character, CharacterPostDTO>()
+                
                 .ReverseMap();
         }
     }

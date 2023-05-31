@@ -10,6 +10,6 @@ namespace FantasyRolAPI.DTOs.ClassDTOs
         public string Description { get; set; }
         public Dice_Type HitDice { get; set; }
 
-        public List<ClassAbility> ClassAbilities { get; set; }
+        //public List<ClassAbility> ClassAbilities { get; set; }
     }
 }

@@ -66,11 +66,26 @@ namespace FantasyRolAPI.Controllers
             }
         }
 
+
         [HttpGet("GenerateData")]
         public async Task<IActionResult> generateData()
         {
             await _characteristicsService.generateData();
             return Ok();
+        }
+
+        [HttpPost("GetRaceById")]
+        public async Task<IActionResult> GetRaceById(Guid Id)
+        {
+            try
+            {
+                var result = await _characterService.GetRaceById(Id);
+                return Ok(result);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
     }

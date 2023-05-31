@@ -12,13 +12,13 @@ namespace FantasyRolAPI.Controllers
     public class UserController : ControllerBase
     {
         private readonly IConfiguration _configuration;
-        private readonly IAuthService _authService;
+        
         private readonly IUserService _userService;
 
-        public UserController(IConfiguration configuration, IAuthService authService, IUserService userService)
+        public UserController(IConfiguration configuration, IUserService userService)
         {
             _configuration = configuration;
-            _authService = authService;
+            
             _userService = userService;
         }
 

@@ -2,6 +2,7 @@
 using FantasyRolAPI.Services.AuthServices;
 using FantasyRolAPI.Services.CharacteristicsServices;
 using FantasyRolAPI.Services.CharacterServices;
+using FantasyRolAPI.Services.ClassServices;
 using FantasyRolAPI.Services.NewFolder;
 using FantasyRolAPI.Services.SpellServices;
 using FantasyRolAPI.Services.UserServices;
@@ -47,6 +48,7 @@ namespace FantasyRolAPI
              services.AddScoped<ICharacterService, CharacterService>();
              services.AddScoped<IAbilityService, AbilityService>();
              services.AddScoped<ISpellService, SpellService>();
+             services.AddScoped<IClassService, ClassService>();
 
 
 

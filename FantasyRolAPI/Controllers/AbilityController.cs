@@ -29,13 +29,11 @@ namespace FantasyRolAPI.Controllers
             try
             {
                 
-                var asDb = this._abilityService.GetAbilitiesFromClassLevel(classId, lvl);
+                var asView =await this._abilityService.GetAbilitiesFromClassLevel(classId, lvl);
 
-                if (asDb != null)
+                if (asView != null)
                 {
-                    var result = _mapper.Map<AbilityMiniDTO>(asDb);
-
-                    return Ok(result);
+                    return Ok(asView);
                 }
 
                 return BadRequest();
@@ -51,13 +49,12 @@ namespace FantasyRolAPI.Controllers
         {
             try
             {
-                var asDb = this._abilityService.GetAbilitiesFromCharacter(characterId);
+                var asView =await this._abilityService.GetAbilitiesFromCharacter(characterId);
 
-                if (asDb != null)
+                if (asView != null)
                 {
-                    var result = _mapper.Map<AbilityMiniDTO>(asDb);
 
-                    return Ok(result);
+                    return Ok(asView);
                 }
 
                 return BadRequest();
@@ -81,16 +78,9 @@ namespace FantasyRolAPI.Controllers
                 }
 
                 
-                var asDb = this._abilityService.AddAbilitiesToCharacter(cahracterId, abilities);
-
-                if (asDb != null)
-                {
-                    var result = _mapper.Map<AbilityMiniDTO>(asDb);
-
-                    return Ok(result);
-                }
-
-                return BadRequest();
+                await this._abilityService.AddAbilitiesToCharacter(cahracterId, abilities);
+                    return Ok();
+                
             }
             catch (Exception ex)
             {
