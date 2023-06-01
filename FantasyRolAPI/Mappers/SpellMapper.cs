@@ -1,18 +1,17 @@
 ﻿using AutoMapper;
-using FantasyRolAPI.DTOs.BonusDTOs;
+using FantasyRolAPI.DTOs.SepllDTOs;
 using FantasyRolAPI.Models;
 using System.ComponentModel;
 
 namespace FantasyRolAPI.Mappers
 {
-    public class BonusMapper: Profile
+    public class SpellMapper: Profile
     {
-        public BonusMapper() 
-        {
-            CreateMap<Bonus, BonusMiniDTO>()
-                .ForMember(dest => dest.characteristicDesc, opt => opt.MapFrom(src => GetEnumDescription(src.characteristic)))
-                        .ReverseMap();
-            CreateMap<Bonus, BonusPostDTO>()
+        public SpellMapper() {
+            CreateMap<Spell, SpellMiniDTO>()
+                    .ForMember(dest => dest.SchoolDesc, opt => opt.MapFrom(src => src.School != null ? GetEnumDescription(src.School) : null))
+                            .ReverseMap();
+            CreateMap<Spell, SpellPostDTO>()
                         .ReverseMap();
         }
         private static string GetEnumDescription(Enum value)
@@ -28,6 +27,4 @@ namespace FantasyRolAPI.Mappers
             return value.ToString();
         }
     }
-
-    
 }

@@ -79,7 +79,7 @@ namespace FantasyRolAPI.Controllers
         {
             try
             {
-                var result = await _characterService.GetRaceById(Id);
+                var result = await _characteristicsService.GetRaceById(Id);
                 return Ok(result);
             }
             catch (ArgumentException ex)

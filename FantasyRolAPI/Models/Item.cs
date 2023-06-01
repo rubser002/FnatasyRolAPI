@@ -12,6 +12,7 @@ namespace FantasyRolAPI.Models
     }
 
     public class Weapon : Item
+        //to be implemented
     {
         public Dice_Type Damage { get; set; }
         public int Range { get; set; }
@@ -19,6 +20,8 @@ namespace FantasyRolAPI.Models
     }
 
     public class Armor : Item
+    //to be implemented
+
     {
         public int ArmorClass { get; set; }
         public Armor_Type ArmorType { get; set; }

@@ -18,8 +18,16 @@ namespace FantasyRolAPI.Mappers
         {
             CreateMap<Character, CharacterMiniDTO>()
                 .ForMember(dest => dest.ClassName, opt => opt.MapFrom(src => src.CharacterClass.Name))
+                .ForMember(dest => dest.RaceName, opt => opt.MapFrom(src => src.CharacterRace.Name))
+
                 .ForMember(dest => dest.AlignmentDescription, opt => opt.MapFrom(src => GetEnumDescription(src.Alignment)))
                 .ReverseMap();
+            CreateMap<Character, CharacterDetailsMiniDTO>()
+            .ForMember(dest => dest.ClassName, opt => opt.MapFrom(src => src.CharacterClass.Name))
+            .ForMember(dest => dest.AbilitiesMini, opt => opt.MapFrom(src => src.CharacterAbilities.Select(c => c.Ability)))
+
+            .ForMember(dest => dest.AlignmentDescription, opt => opt.MapFrom(src => GetEnumDescription(src.Alignment)))
+            .ReverseMap();
             CreateMap<Character, CharacterPostDTO>()
         
                 .ReverseMap();

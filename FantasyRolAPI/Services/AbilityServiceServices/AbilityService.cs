@@ -47,17 +47,68 @@ namespace FantasyRolAPI.Services.NewFolder
 
         public async Task AddAbilitiesToCharacter(Guid characterId, List<Ability> abilities)
         {
-            
-            var classObj = await _db.Character.FindAsync(characterId);
+            var existingAbilities = _db.CharacterAbility
+                .Where(c => c.CharacterId == characterId)
+                .ToList();
+
             foreach (var ability in abilities)
             {
-                classObj.CharacterAbilities.Add(new CharacterAbility { Ability = ability });
+                var existingAbility = existingAbilities
+                    .FirstOrDefault(a => a.AbilityId == ability.Id);
 
+                if (existingAbility != null)
+                {
+                    existingAbility.Ability.Name = ability.Name;
+                    existingAbility.Ability.Description = ability.Description;
+
+                    _db.CharacterAbility.Update(existingAbility);
+                }
+                else if(ability!=null)
+                {
+                    var newAbility = new Ability
+                    {
+                        Name = ability.Name,
+                        Description = ability.Description,
+                        Level = ability.Level,
+                        Bonuses = ability.Bonuses,
+                        Identifier= ability.Identifier,
+                        
+                    };
+
+                    var characterAbility = new CharacterAbility
+                    {
+                        Ability = newAbility,
+                        CharacterId = characterId
+                    };
+
+                    _db.CharacterAbility.Add(characterAbility);
+                }
             }
-            _db.Update(classObj);
-            _db.SaveChanges();
 
+            await _db.SaveChangesAsync();
         }
 
+        public async Task UpdateAbilities(List<Ability> ability)
+        {
+            _db.UpdateRange(ability);
+            await _db.SaveChangesAsync();
+        }
+
+        public async Task DeleteAbility(Guid abilityId)
+        {
+            var items = await _db.Ability
+                .Where(cs => cs.Id == abilityId)
+                .ToListAsync();
+
+            _db.Ability.RemoveRange(items);
+            await _db.SaveChangesAsync();
+        }
+
+        public async Task UpdateAbility(Ability ability)
+        {
+            _db.Update(ability);
+            await _db.SaveChangesAsync();
+
+        }
     }
 }

@@ -11,10 +11,7 @@ namespace FantasyRolAPI.Mappers
                     .ReverseMap();
             CreateMap<Ability, AbilityPostDTO>()
                 .ReverseMap();
-            CreateMap<AbilityMiniDTO, Ability>()
-                    .ReverseMap();
-            CreateMap<AbilityPostDTO, Ability>()
-                .ReverseMap();
+            
         }
     }
 }

@@ -148,6 +148,12 @@ namespace FantasyRolAPI.Services.CharacteristicsServices
                 Weight = "40",
                 Height = "3 feet",
                 DescAlignment = "Halflings tend to be good-natured, easy-going, and value simple pleasures.",
+                Ability = new Ability()
+                {
+                    Name = "Lucky",
+                    Description = "If you rol a 1 instead rol again",
+
+                },
                 Bonuses = new List<Bonus>()
                 {
                     new Bonus()
@@ -170,6 +176,12 @@ namespace FantasyRolAPI.Services.CharacteristicsServices
                 Weight = "200",
                 Height = "6.5 feet",
                 DescAlignment = "Dragonborn can have various alignments, but their dragon heritage often influences their personality and behavior.",
+                Ability = new Ability()
+                {
+                    Name="Fire breath",
+                    Description = "Exhale you fire breath in a cone dealing 1 d10 damage",
+                    
+                },
                 Bonuses = new List<Bonus>()
                 {
                     new Bonus()
@@ -398,6 +410,11 @@ namespace FantasyRolAPI.Services.CharacteristicsServices
             _db.Add(dwarf);
             await _db.SaveChangesAsync();
         }
+        public async Task<Race> GetRaceById(Guid Id)
+        {
+            var asDb = await _db.Race.Where(r => r.Id == Id).Include(r=>r.Bonuses).Include(r => r.Ability).FirstAsync();
 
+            return asDb;
+        }
     }
 }

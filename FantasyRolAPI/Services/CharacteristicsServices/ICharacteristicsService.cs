@@ -10,5 +10,7 @@ namespace FantasyRolAPI.Services.CharacteristicsServices
 
         Task<List<LabelAndValue>> getClassAutocomplete();
         Task<List<LabelAndValue>> getRaceAutocomplete();
+
+        Task<Race> GetRaceById(Guid Id);
     }
 }

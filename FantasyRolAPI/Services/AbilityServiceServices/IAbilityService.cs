@@ -11,5 +11,8 @@ namespace FantasyRolAPI.Services.NewFolder
         Task<List<AbilityMiniDTO>> GetAbilitiesFromClassLevel(Guid classId, int lvl);
         Task<List<AbilityMiniDTO>> GetAbilitiesFromCharacter(Guid characterId);
         Task AddAbilitiesToCharacter(Guid characterId, List<Ability> abilities);
+        Task UpdateAbilities(List<Ability> ability);
+        Task DeleteAbility(Guid abilityId);
+        Task UpdateAbility(Ability ability);
     }
 }

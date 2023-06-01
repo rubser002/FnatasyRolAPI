@@ -42,13 +42,24 @@ namespace FantasyRolAPI.Services.CharacterServices
 
             return result;
         }
-
-        public async Task<Race> GetRaceById(Guid Id)
+        public async Task<CharacterDetailsMiniDTO> GetCharacterDetailsById(Guid CharacterId, Guid UserId)
         {
-            var asDb =await _db.Race.Where(r=>r.Id == Id).FirstOrDefaultAsync();
-            
-            return asDb;
+            var asDb = _db.Character
+            .Where(c => c.Id == CharacterId && c.UserId == UserId)
+            .Include(c => c.CharacterRace)
+                .ThenInclude(r => r.Ability)
+            .Include(c => c.CharacterRace)
+                .ThenInclude(r => r.Bonuses);
+            if (asDb == null)
+            {
+                return null;
+            }
+            var result = await _mapper.ProjectTo<CharacterDetailsMiniDTO>(asDb).FirstAsync();
+
+            return result;
         }
+
+        
 
         public async Task<List<CharacterMiniDTO>> GetListCharacters(Guid Id,string filter)
         {
@@ -91,16 +102,78 @@ namespace FantasyRolAPI.Services.CharacterServices
             return bonuses;
         }
 
-        private bool HasBonusForCharacteristic(List<Bonus> bonuses, Characteristics_Type characteristic)
+        public async Task UpdateBonuses(List<Bonus> bonuses)
         {
-            foreach (Bonus bonus in bonuses)
+            _db.UpdateRange(bonuses);
+            await _db.SaveChangesAsync();
+        }
+        public async Task UpdateItems(List<Item> items)
+        {
+            _db.UpdateRange(items);
+            await _db.SaveChangesAsync();
+        }
+        public async Task UpdateCharacter(Character character)
+        {
+            var asDb = await _db.Character
+                .Where(c => c.Id == character.Id)
+                .Include(b => b.Background)
+                .FirstAsync();
+
+            var backgroundId = asDb.Background.Id;
+
+            
+            _db.Entry(asDb.Background).State = EntityState.Detached;
+
+            character.Background.Id = backgroundId;
+
+            if (asDb != null)
             {
-                if (bonus.characteristic == characteristic)
-                {
-                    return true;
-                }
+                asDb.Story = character.Story;
+                asDb.Description = character.Description;
+                asDb.Alignment = character.Alignment;
+                asDb.Background = character.Background;
+                asDb.CurrentSpellSlots = character.CurrentSpellSlots;
+                asDb.ExperiencePoints = character.ExperiencePoints;
+                asDb.Name = character.Name;
+                asDb.Story = character.Story;
+
+                _db.Update(asDb);
+                await _db.SaveChangesAsync();
             }
-            return false;
+        }
+
+        public async Task DeleteSpellToCharacter(Guid characterId, Guid spellId)
+        {
+            var characterSpells = await _db.CharacterSpell
+                .Where(cs => cs.CharacterId == characterId && cs.SpellId == spellId)
+                .ToListAsync();
+
+            _db.CharacterSpell.RemoveRange(characterSpells);
+            await _db.SaveChangesAsync();
+        }
+
+        public async Task DeleteItem(Guid itemGuid)
+        {
+            var items = await _db.Item
+                .Where(cs => cs.Id == itemGuid)
+                .ToListAsync();
+
+            _db.Item.RemoveRange(items);
+            await _db.SaveChangesAsync();
+        }
+
+
+        public async Task AddSpellToCharacter(Guid characterId, Guid spellId)
+        {
+
+            var characterSpell = new CharacterSpell()
+            {
+                CharacterId = characterId,
+                SpellId = spellId
+            };
+            await _db.AddAsync(characterSpell);
+            await _db.SaveChangesAsync();
+
         }
     }
 }

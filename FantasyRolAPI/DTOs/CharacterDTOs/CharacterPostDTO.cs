@@ -20,7 +20,7 @@ namespace FantasyRolAPI.DTOs.CharacterDTOs
         public Guid CharacterClassId { get; set; }
         public Guid? SubclassId { get; set; }
         public Background? Background { get; set; }
-        public List<Bonus> Bonuses { get; set; }
+        public List<Bonus>? Bonuses { get; set; }
         
 
     }

@@ -73,13 +73,44 @@ namespace FantasyRolAPI.Controllers
                 var abilities = new List<Ability>();
                 foreach(AbilityPostDTO abilityPostDTO in abilitiesPost)
                 {
-                    var ability = _mapper.Map<Ability>(abilitiesPost);
+                    
+                    var ability = _mapper.Map<Ability>(abilityPostDTO);
                     abilities.Add(ability);
                 }
                 
                 await this._abilityService.AddAbilitiesToCharacter(characterId, abilities);
                     return Ok();
                 
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("UpdateAbilities")]
+        public async Task<IActionResult> UpdateAbilities(List<AbilityPostDTO> ability)
+        {
+            try
+            {
+                var abilityAsEntity = _mapper.Map<List<Ability>>(ability);
+                await _abilityService.UpdateAbilities(abilityAsEntity);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [HttpPost("DeleteAbility")]
+        public async Task<IActionResult> DeleteAbility(Guid abilityId)
+        {
+            try
+            {
+                await _abilityService.DeleteAbility(abilityId);
+
+                return Ok();
             }
             catch (Exception ex)
             {
