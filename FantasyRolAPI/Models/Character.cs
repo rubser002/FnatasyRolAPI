@@ -1,5 +1,6 @@
 ﻿using FantasyRolAPI.Data;
 using FantasyRolAPI.Enums;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
@@ -7,13 +8,18 @@ namespace FantasyRolAPI.Models
 {
     public class Character : BaseEntity
     {
+        [StringLength(14)]
         public string Name { get; set; }
+        
         public string? Description { get; set; }
+        [StringLength(200)]
         public string? Story { get; set; }
         public int Level { get; set; }
         public int? ExperiencePoints { get; set; }
         public Alignment_Type Alignment { get; set; }
         public int? CurrentHitPoints { get; set; }
+        [StringLength(50)]
+
         public string? CurrentSpellSlots { get; set; }
 
         [ForeignKey("User")]
