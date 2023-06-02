@@ -5,10 +5,10 @@ namespace FantasyRolAPI.Enums
     public enum ProficiencyBonus_Type
     {
         [Description("No proficiency")]
-        NoProficiency = 1,
+        NoProficiency = 0,
 
         [Description("Proficiency")]
-        Proficiency = 2,
+        Proficiency = 1,
         
         [Description("Double Proficiency")]
         DoubleProficiency = 2,

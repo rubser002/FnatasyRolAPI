@@ -51,8 +51,6 @@ C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net
 C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\System.CodeDom.dll
 C:\Users\Ruben\Source\Repos\rubser002\FnatasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\appsettings.Development.json
 C:\Users\Ruben\Source\Repos\rubser002\FnatasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\appsettings.json
-C:\Users\Ruben\Source\Repos\rubser002\FnatasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\ClientApp\FantasyRol\package-lock.json
-C:\Users\Ruben\Source\Repos\rubser002\FnatasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\ClientApp\FantasyRol\package.json
 C:\Users\Ruben\Source\Repos\rubser002\FnatasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\FantasyRolAPI.exe
 C:\Users\Ruben\Source\Repos\rubser002\FnatasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\FantasyRolAPI.deps.json
 C:\Users\Ruben\Source\Repos\rubser002\FnatasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\FantasyRolAPI.runtimeconfig.json
@@ -105,3 +103,6 @@ C:\Users\Ruben\Source\Repos\rubser002\FnatasyRolAPI\FantasyRolAPI\obj\Debug\net7
 C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\System.Web.Cors.dll
 C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\AutoMapper.dll
 C:\Proyectos\proyectosRS\FantasyRolAPI\FantasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Ruben\source\repos\rubser002\FnatasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\Ruben\source\repos\rubser002\FnatasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Ruben\source\repos\rubser002\FnatasyRolAPI\FantasyRolAPI\bin\Debug\net7.0\System.Web.Cors.dll

@@ -27,20 +27,23 @@ namespace FantasyRolAPI.Services.UserServices
         {
             return await _db.Users.FirstOrDefaultAsync(u => u.Id == Id);
         }
-        public  void AddUser(User user)
+        public async Task<User> AddUserAsync(User user)
         {
             
             _db.Users.Add(user);
-             _db.SaveChanges();
+            await _db.SaveChangesAsync();
+            return user;
         }
 
-        public  void UpdateUser(User user)
+        public async Task<User> UpdateUserAsync(User user)
         {
             
 
             _db.Users.Update(user);
-             _db.SaveChanges();
+             await _db.SaveChangesAsync();
+            return user;
+
         }
-        
+
     }
 }

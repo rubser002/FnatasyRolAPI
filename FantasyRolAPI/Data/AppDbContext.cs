@@ -33,9 +33,11 @@ namespace FantasyRolAPI.Data
         public DbSet<Armor> Armor { get; set; }
         public DbSet<Race> Race { get; set; }
         public DbSet<Spell> Spell { get; set; }
+        public DbSet<CharacterAbility> CharacterAbility { get; set; }
+        public DbSet<CharacterSpell> CharacterSpell { get; set; }
+        public DbSet<ClassAbility> ClassAbility { get; set; }
         public DbSet<Subclass> Subclass { get; set; }
-
-
+        public DbSet<Background> Background { get; set; }
     }
 
 }

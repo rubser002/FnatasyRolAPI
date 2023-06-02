@@ -25,18 +25,11 @@ namespace FantasyRolAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid?>("CharacterId")
-                        .HasColumnType("char(36)");
-
-                    b.Property<Guid?>("ClassId")
-                        .HasColumnType("char(36)");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Identifier")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int?>("Level")
@@ -51,13 +44,42 @@ namespace FantasyRolAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CharacterId");
-
-                    b.HasIndex("ClassId");
-
                     b.HasIndex("SubclassId");
 
                     b.ToTable("Ability");
+                });
+
+            modelBuilder.Entity("FantasyRolAPI.Models.Background", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Bond")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Features")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Flaw")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Ideal")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Languages")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("PersonalityTrait")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Background");
                 });
 
             modelBuilder.Entity("FantasyRolAPI.Models.Bonus", b =>
@@ -67,6 +89,9 @@ namespace FantasyRolAPI.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("AbilityId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid?>("CharacterId")
                         .HasColumnType("char(36)");
 
                     b.Property<Guid?>("RaceId")
@@ -85,6 +110,8 @@ namespace FantasyRolAPI.Migrations
 
                     b.HasIndex("AbilityId");
 
+                    b.HasIndex("CharacterId");
+
                     b.HasIndex("RaceId");
 
                     b.ToTable("Bonus");
@@ -99,30 +126,23 @@ namespace FantasyRolAPI.Migrations
                     b.Property<int>("Alignment")
                         .HasColumnType("int");
 
-                    b.Property<int?>("AlignmentId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CharacterClassId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("CharacterClassId1")
+                    b.Property<Guid?>("BackgroundId")
+                        .IsRequired()
                         .HasColumnType("char(36)");
 
-                    b.Property<int>("CharacterRaceId")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("CharacterRaceId1")
+                    b.Property<Guid>("CharacterClassId")
                         .HasColumnType("char(36)");
 
-                    b.Property<int>("CurrentHitPoints")
+                    b.Property<Guid>("CharacterRaceId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<int?>("CurrentHitPoints")
                         .HasColumnType("int");
 
                     b.Property<string>("CurrentSpellSlots")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<int?>("ExperiencePoints")
@@ -136,24 +156,69 @@ namespace FantasyRolAPI.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Story")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int?>("SubclassId")
-                        .HasColumnType("int");
+                    b.Property<Guid?>("SubclassId")
+                        .HasColumnType("char(36)");
 
-                    b.Property<Guid>("SubclassId1")
+                    b.Property<Guid>("UserId")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CharacterClassId1");
+                    b.HasIndex("BackgroundId");
 
-                    b.HasIndex("CharacterRaceId1");
+                    b.HasIndex("CharacterClassId");
 
-                    b.HasIndex("SubclassId1");
+                    b.HasIndex("CharacterRaceId");
+
+                    b.HasIndex("SubclassId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Character");
+                });
+
+            modelBuilder.Entity("FantasyRolAPI.Models.CharacterAbility", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("AbilityId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("CharacterId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AbilityId");
+
+                    b.HasIndex("CharacterId");
+
+                    b.ToTable("CharacterAbility");
+                });
+
+            modelBuilder.Entity("FantasyRolAPI.Models.CharacterSpell", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("CharacterId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("SpellId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CharacterId");
+
+                    b.HasIndex("SpellId");
+
+                    b.ToTable("CharacterSpell");
                 });
 
             modelBuilder.Entity("FantasyRolAPI.Models.Class", b =>
@@ -178,6 +243,27 @@ namespace FantasyRolAPI.Migrations
                     b.ToTable("Class");
                 });
 
+            modelBuilder.Entity("FantasyRolAPI.Models.ClassAbility", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("AbilityId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<Guid>("ClassId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AbilityId");
+
+                    b.HasIndex("ClassId");
+
+                    b.ToTable("ClassAbility");
+                });
+
             modelBuilder.Entity("FantasyRolAPI.Models.Item", b =>
                 {
                     b.Property<Guid>("Id")
@@ -188,7 +274,6 @@ namespace FantasyRolAPI.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Discriminator")
@@ -199,10 +284,10 @@ namespace FantasyRolAPI.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("Value")
+                    b.Property<int?>("Value")
                         .HasColumnType("int");
 
-                    b.Property<int>("Weight")
+                    b.Property<int?>("Weight")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -222,15 +307,13 @@ namespace FantasyRolAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
-                    b.Property<Guid>("AbilityId")
+                    b.Property<Guid?>("AbilityId")
                         .HasColumnType("char(36)");
 
                     b.Property<string>("AgeInterval")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("DescAlignment")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Description")
@@ -238,7 +321,6 @@ namespace FantasyRolAPI.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Height")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Name")
@@ -246,7 +328,6 @@ namespace FantasyRolAPI.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("Weight")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");
@@ -266,7 +347,6 @@ namespace FantasyRolAPI.Migrations
                         .HasColumnType("char(36)");
 
                     b.Property<string>("Components")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Description")
@@ -278,10 +358,9 @@ namespace FantasyRolAPI.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("SComponents")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
-                    b.Property<int>("School")
+                    b.Property<int?>("School")
                         .HasColumnType("int");
 
                     b.Property<int>("SpellLevel")
@@ -371,14 +450,6 @@ namespace FantasyRolAPI.Migrations
 
             modelBuilder.Entity("FantasyRolAPI.Models.Ability", b =>
                 {
-                    b.HasOne("FantasyRolAPI.Models.Character", null)
-                        .WithMany("Abilities")
-                        .HasForeignKey("CharacterId");
-
-                    b.HasOne("FantasyRolAPI.Models.Class", null)
-                        .WithMany("ClassAbilities")
-                        .HasForeignKey("ClassId");
-
                     b.HasOne("FantasyRolAPI.Models.Subclass", null)
                         .WithMany("SubClassAbilities")
                         .HasForeignKey("SubclassId");
@@ -390,6 +461,10 @@ namespace FantasyRolAPI.Migrations
                         .WithMany("Bonuses")
                         .HasForeignKey("AbilityId");
 
+                    b.HasOne("FantasyRolAPI.Models.Character", null)
+                        .WithMany("Bonuses")
+                        .HasForeignKey("CharacterId");
+
                     b.HasOne("FantasyRolAPI.Models.Race", null)
                         .WithMany("Bonuses")
                         .HasForeignKey("RaceId");
@@ -397,29 +472,100 @@ namespace FantasyRolAPI.Migrations
 
             modelBuilder.Entity("FantasyRolAPI.Models.Character", b =>
                 {
-                    b.HasOne("FantasyRolAPI.Models.Class", "CharacterClass")
+                    b.HasOne("FantasyRolAPI.Models.Background", "Background")
                         .WithMany()
-                        .HasForeignKey("CharacterClassId1")
+                        .HasForeignKey("BackgroundId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FantasyRolAPI.Models.Class", "CharacterClass")
+                        .WithMany("Characters")
+                        .HasForeignKey("CharacterClassId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FantasyRolAPI.Models.Race", "CharacterRace")
                         .WithMany()
-                        .HasForeignKey("CharacterRaceId1")
+                        .HasForeignKey("CharacterRaceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("FantasyRolAPI.Models.Subclass", "Subclass")
+                    b.HasOne("FantasyRolAPI.Models.Subclass", "CharacterSubclass")
                         .WithMany()
-                        .HasForeignKey("SubclassId1")
+                        .HasForeignKey("SubclassId");
+
+                    b.HasOne("FantasyRolAPI.Models.User", "User")
+                        .WithMany("Characters")
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Background");
 
                     b.Navigation("CharacterClass");
 
                     b.Navigation("CharacterRace");
 
-                    b.Navigation("Subclass");
+                    b.Navigation("CharacterSubclass");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FantasyRolAPI.Models.CharacterAbility", b =>
+                {
+                    b.HasOne("FantasyRolAPI.Models.Ability", "Ability")
+                        .WithMany("CharacterAbilities")
+                        .HasForeignKey("AbilityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FantasyRolAPI.Models.Character", "Character")
+                        .WithMany("CharacterAbilities")
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ability");
+
+                    b.Navigation("Character");
+                });
+
+            modelBuilder.Entity("FantasyRolAPI.Models.CharacterSpell", b =>
+                {
+                    b.HasOne("FantasyRolAPI.Models.Character", "Character")
+                        .WithMany()
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FantasyRolAPI.Models.Spell", "Spell")
+                        .WithMany()
+                        .HasForeignKey("SpellId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Character");
+
+                    b.Navigation("Spell");
+                });
+
+            modelBuilder.Entity("FantasyRolAPI.Models.ClassAbility", b =>
+                {
+                    b.HasOne("FantasyRolAPI.Models.Ability", "Ability")
+                        .WithMany("ClassAbilities")
+                        .HasForeignKey("AbilityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FantasyRolAPI.Models.Class", "Class")
+                        .WithMany("ClassAbilities")
+                        .HasForeignKey("ClassId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ability");
+
+                    b.Navigation("Class");
                 });
 
             modelBuilder.Entity("FantasyRolAPI.Models.Item", b =>
@@ -433,9 +579,7 @@ namespace FantasyRolAPI.Migrations
                 {
                     b.HasOne("FantasyRolAPI.Models.Ability", "Ability")
                         .WithMany()
-                        .HasForeignKey("AbilityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AbilityId");
 
                     b.Navigation("Ability");
                 });
@@ -450,11 +594,17 @@ namespace FantasyRolAPI.Migrations
             modelBuilder.Entity("FantasyRolAPI.Models.Ability", b =>
                 {
                     b.Navigation("Bonuses");
+
+                    b.Navigation("CharacterAbilities");
+
+                    b.Navigation("ClassAbilities");
                 });
 
             modelBuilder.Entity("FantasyRolAPI.Models.Character", b =>
                 {
-                    b.Navigation("Abilities");
+                    b.Navigation("Bonuses");
+
+                    b.Navigation("CharacterAbilities");
 
                     b.Navigation("Inventory");
 
@@ -463,6 +613,8 @@ namespace FantasyRolAPI.Migrations
 
             modelBuilder.Entity("FantasyRolAPI.Models.Class", b =>
                 {
+                    b.Navigation("Characters");
+
                     b.Navigation("ClassAbilities");
                 });
 
@@ -474,6 +626,11 @@ namespace FantasyRolAPI.Migrations
             modelBuilder.Entity("FantasyRolAPI.Models.Subclass", b =>
                 {
                     b.Navigation("SubClassAbilities");
+                });
+
+            modelBuilder.Entity("FantasyRolAPI.Models.User", b =>
+                {
+                    b.Navigation("Characters");
                 });
 #pragma warning restore 612, 618
         }

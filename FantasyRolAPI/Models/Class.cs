@@ -8,6 +8,8 @@ namespace FantasyRolAPI.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public Dice_Type HitDice { get; set; }
-        public List<Ability> ClassAbilities { get; set; }
+
+        public List<ClassAbility> ClassAbilities { get; set; }
+        public virtual List<Character> Characters { get; set; }
     }
 }

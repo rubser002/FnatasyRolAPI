@@ -1,4 +1,5 @@
-﻿using FantasyRolAPI.Models;
+﻿using AutoMapper;
+using FantasyRolAPI.Models;
 using FantasyRolAPI.Services.AuthServices;
 using FantasyRolAPI.Services.UserServices;
 using Microsoft.AspNetCore.Mvc;
@@ -9,25 +10,25 @@ namespace FantasyRolAPI.Controllers
 {
     [ApiController]
     [Route("api/users")]
-    public class UserController : ControllerBase
+    public class UserController : BaseController
     {
         private readonly IConfiguration _configuration;
-        private readonly IAuthService _authService;
+        
         private readonly IUserService _userService;
 
-        public UserController(IConfiguration configuration, IAuthService authService, IUserService userService)
+        public UserController(IConfiguration configuration, IMapper mapper, IUserService userService) : base(mapper)
         {
             _configuration = configuration;
-            _authService = authService;
+            
             _userService = userService;
         }
 
         [HttpPost("AddUser")]
-        public IActionResult AddUser(User user)
+        public async Task<IActionResult> AddUserAsync(User user)
         {
             try
             {
-                _userService.AddUser(user);
+                await _userService.AddUserAsync(user);
                 return Ok();
             }
             catch (ArgumentException ex)
@@ -38,11 +39,11 @@ namespace FantasyRolAPI.Controllers
 
         [HttpPost("UpdateUser")]
 
-        public IActionResult UpdateUser(User user)
+        public async Task<IActionResult> UpdateUserAsync(User user)
         {
             try
             {
-                _userService.UpdateUser(user);
+                await _userService.UpdateUserAsync(user);
                 return Ok();
             }
             catch (ArgumentException ex)
