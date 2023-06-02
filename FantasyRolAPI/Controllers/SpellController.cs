@@ -19,7 +19,7 @@ namespace FantasyRolAPI.Controllers
         }
 
         [HttpPost("GetSpells")]
-        public async Task<IActionResult> GetSpells(int pageSize, int currentPage, string filter=null, string level = null, string school = null, string description = null)
+        public async Task<IActionResult> GetSpells(int pageSize, int currentPage, string filter="", string level = "", string school = "", string description = "")
         {
             try
             {
@@ -38,6 +38,59 @@ namespace FantasyRolAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        [HttpPost("GetSpellsCharacter")]
+        public async Task<IActionResult> GetSpellsCharacter(Guid characterId,int pageSize, int currentPage, string filter = "", string level = "", string school = "", string description = "")
+        {
+            try
+            {
+
+                var asView = await this._spellService.GetSpellsCharacter(characterId, pageSize, currentPage, filter, level, school, description);
+
+                if (asView != null)
+                {
+                    return Ok(asView);
+                }
+
+                return BadRequest();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("AddSpellCharacter")]
+        public async Task<IActionResult> AddSpellCharacter(Guid characterId, Guid spellId)
+        {
+            try
+            {
+                await this._spellService.AddSpellCharacter(characterId, spellId);
+
+                    return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("DeleteSpellCharacter")]
+        public async Task<IActionResult> DeleteSpellCharacter(Guid characterId, Guid spellId)
+        {
+            try
+            {
+                 await this._spellService.DeleteSpellCharacter(characterId, spellId);
+                    return Ok();
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
 
 
     }

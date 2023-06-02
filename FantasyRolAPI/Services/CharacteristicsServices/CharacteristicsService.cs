@@ -67,7 +67,7 @@ namespace FantasyRolAPI.Services.CharacteristicsServices
                 Description = "",
                 Weight = "100",
                 Height = "7 feet",
-                DescAlignment= "",
+                DescAlignment = "",
                 Bonuses = new List<Bonus>()
                 {
                     new Bonus()
@@ -178,9 +178,9 @@ namespace FantasyRolAPI.Services.CharacteristicsServices
                 DescAlignment = "Dragonborn can have various alignments, but their dragon heritage often influences their personality and behavior.",
                 Ability = new Ability()
                 {
-                    Name="Fire breath",
+                    Name = "Fire breath",
                     Description = "Exhale you fire breath in a cone dealing 1 d10 damage",
-                    
+
                 },
                 Bonuses = new List<Bonus>()
                 {
@@ -199,89 +199,281 @@ namespace FantasyRolAPI.Services.CharacteristicsServices
 
 
             List<Spell> spellList = new List<Spell>
-{
-    new Spell
-    {
-        Name = "Magic Missile",
-        Description = "Spell description",
-        School = School_Type.evocation,
-        Components = "",
-        SComponents = "V S",
-        SpellLevel = 1
-    },
-    new Spell
-    {
-        Name = "Fireball",
-        Description = "A fiery explosion erupts at a target location, damaging all creatures in the area.",
-        School = School_Type.evocation,
-        Components = "V, S, M (a tiny ball of bat guano and sulfur)",
-        SComponents = null,
-        SpellLevel = 3
-    },
-    new Spell
-    {
-        Name = "Cure Wounds",
-        Description = "A healing spell that restores a target's hit points.",
-        School = School_Type.conjuration,
-        Components = "V, S",
-        SComponents = null,
-        SpellLevel = 1
-    },
-    new Spell
-    {
-        Name = "Lightning Bolt",
-        Description = "A bolt of lightning streaks towards a target, damaging all creatures in its path.",
-        School = School_Type.evocation,
-        Components = "V, S, M (a bit of fur and a rod of amber, crystal, or glass)",
-        SComponents = null,
-        SpellLevel = 3
-    },
-    new Spell
-    {
-        Name = "Shield",
-        Description = "Creates a magical shield that provides a bonus to AC (Armor Class) until the start of your next turn.",
-        School = School_Type.abjuration,
-        Components = "V, S",
-        SComponents = null,
-        SpellLevel = 1
-    },
-    new Spell
-    {
-        Name = "Counterspell",
-        Description = "Interrupts another spell being cast, preventing its effects.",
-        School = School_Type.abjuration,
-        Components = "S",
-        SComponents = "None",
-        SpellLevel = 3
-    },
-    new Spell
-    {
-        Name = "Fly",
-        Description = "Grants the ability to fly to a target creature.",
-        School = School_Type.transmutation,
-        Components = "V, S, M (a wing feather from any bird)",
-        SComponents = null,
-        SpellLevel = 3
-    },
-    new Spell
-    {
-        Name = "Dispel Magic",
-        Description = "Cancels out magical effects or dispels ongoing spells.",
-        School = School_Type.abjuration,
-        Components = "V, S",
-        SComponents = null,
-        SpellLevel = 3
-    },
-    new Spell
-    {
-        Name = "Teleportation Circle",
-        Description = "Creates a magical circle that allows for instant teleportation between two linked locations.",
-        School = School_Type.conjuration,
-        Components = "V, M (rare chalks and inks infused with precious gems worth 50 gp)",
-        SComponents = null,
-        SpellLevel = 5
-    }
-};
+                {
+                    new Spell
+                    {
+                        Name = "Magic Missile",
+                        Description = "Spell description",
+                        School = School_Type.evocation,
+                        Components = "",
+                        SComponents = "V S",
+                        SpellLevel = 1
+                    },
+                    new Spell
+                    {
+                        Name = "Fireball",
+                        Description = "A fiery explosion erupts at a target location, damaging all creatures in the area.",
+                        School = School_Type.evocation,
+                        Components = "V, S, M (a tiny ball of bat guano and sulfur)",
+                        SComponents = null,
+                        SpellLevel = 3
+                    },
+                    new Spell
+                    {
+                        Name = "Cure Wounds",
+                        Description = "A healing spell that restores a target's hit points.",
+                        School = School_Type.conjuration,
+                        Components = "V, S",
+                        SComponents = null,
+                        SpellLevel = 1
+                    },
+                    new Spell
+                    {
+                        Name = "Lightning Bolt",
+                        Description = "A bolt of lightning streaks towards a target, damaging all creatures in its path.",
+                        School = School_Type.evocation,
+                        Components = "V, S, M (a bit of fur and a rod of amber, crystal, or glass)",
+                        SComponents = null,
+                        SpellLevel = 3
+                    },
+                    new Spell
+                    {
+                        Name = "Shield",
+                        Description = "Creates a magical shield that provides a bonus to AC (Armor Class) until the start of your next turn.",
+                        School = School_Type.abjuration,
+                        Components = "V, S",
+                        SComponents = null,
+                        SpellLevel = 1
+                    },
+                    new Spell
+                    {
+                        Name = "Counterspell",
+                        Description = "Interrupts another spell being cast, preventing its effects.",
+                        School = School_Type.abjuration,
+                        Components = "S",
+                        SComponents = "None",
+                        SpellLevel = 3
+                    },
+                    new Spell
+                    {
+                        Name = "Fly",
+                        Description = "Grants the ability to fly to a target creature.",
+                        School = School_Type.transmutation,
+                        Components = "V, S, M (a wing feather from any bird)",
+                        SComponents = null,
+                        SpellLevel = 3
+                    },
+                    new Spell
+                    {
+                        Name = "Dispel Magic",
+                        Description = "Cancels out magical effects or dispels ongoing spells.",
+                        School = School_Type.abjuration,
+                        Components = "V, S",
+                        SComponents = null,
+                        SpellLevel = 3
+                    },
+
+                    new Spell
+                    {
+                        Name = "Teleportation Circle",
+                        Description = "Creates a magical circle that allows for instant teleportation between two linked locations.",
+                        School = School_Type.conjuration,
+                        Components = "V, M (rare chalks and inks infused with precious gems worth 50 gp)",
+                        SComponents = null,
+                        SpellLevel = 5
+                    },
+                    new Spell
+                    {
+                        Name = "Guiding Bolt",
+                        Description = "A radiant bolt of energy streaks toward a target, dealing damage and granting advantage on the next attack against it.",
+                        School = School_Type.evocation,
+                        Components = "V, S",
+                        SComponents = null,
+                        SpellLevel = 1
+                    },
+                    new Spell
+                    {
+                        Name = "Detect Magic",
+                        Description = "Senses the presence of magic within a certain area.",
+                        School = School_Type.divination,
+                        Components = "V, S",
+                        SComponents = null,
+                        SpellLevel = 1
+                    },
+                    new Spell
+                    {
+                        Name = "Charm Person",
+                        Description = "Attempts to charm a humanoid creature, making it friendly towards the caster.",
+                        School = School_Type.enchantment,
+                        Components = "V, S",
+                        SComponents = null,
+                        SpellLevel = 1
+                    },
+                    new Spell
+                    {
+                        Name = "Sleep",
+                        Description = "Causes creatures in a targeted area to fall into a magical slumber.",
+                        School = School_Type.enchantment,
+                        Components = "V, S, M (a pinch of fine sand, rose petals, or a cricket)",
+                        SComponents = null,
+                        SpellLevel = 1
+                    },
+                    new Spell
+                    {
+                        Name = "Thunderwave",
+                        Description = "A wave of thunderous force sweeps out from the caster, damaging creatures in a cone-shaped area.",
+                        School = School_Type.evocation,
+                        Components = "V, S",
+                        SComponents = null,
+                        SpellLevel = 1
+                    },
+                    new Spell
+                    {
+                        Name = "Mage Armor",
+                        Description = "Creates a magical field of force around the caster, providing extra protection.",
+                        School = School_Type.abjuration,
+                        Components = "V, S, M (a piece of cured leather)",
+                        SComponents = null,
+                        SpellLevel = 1
+                    },
+                    new Spell
+                    {
+                        Name = "Identify",
+                        Description = "Reveals the magical properties of a chosen object.",
+                        School = School_Type.divination,
+                        Components = "V, S, M (a pearl worth at least 100 gp and an owl feather)",
+                        SComponents = null,
+                        SpellLevel = 1
+                    },
+                    new Spell
+                    {
+                        Name = "Silent Image",
+                        Description = "Creates the illusion of an object, creature, or phenomenon that is visible but lacks substance.",
+                        School = School_Type.illusion,
+                        Components = "V, S, M (a bit of fleece)",
+                        SComponents = null,
+                        SpellLevel = 1
+                    },
+                    new Spell
+                    {
+                        Name = "Misty Step",
+                        Description = "Teleports the caster up to 30 feet to an unoccupied space that they can see.",
+                        School = School_Type.conjuration,
+                        Components = "V",
+                        SComponents = null,
+                        SpellLevel = 2
+                    },
+                    new Spell
+                    {
+                        Name = "Invisibility",
+                        Description = "Renders the target invisible until the spell ends or they attack or cast a spell.",
+                        School = School_Type.illusion,
+                        Components = "V, S, M (an eyelash encased in gum arabic)",
+                        SComponents = null,
+                        SpellLevel = 2
+                    },
+                    new Spell
+                    {
+                        Name = "Mirror Image",
+                        Description = "Creates illusory duplicates of the caster, making it harder for enemies to target them.",
+                        School = School_Type.illusion,
+                        Components = "V, S",
+                        SComponents = null,
+                        SpellLevel = 2
+                    },
+                    new Spell
+                    {
+                        Name = "Enlarge/Reduce",
+                        Description = "Either increases or decreases the size of a creature or object.",
+                        School = School_Type.transmutation,
+                        Components = "V, S, M (a pinch of powdered iron)",
+                        SComponents = null,
+                        SpellLevel = 2
+                    },
+                    new Spell
+                    {
+                        Name = "Gaseous Form",
+                        Description = "Transforms the caster's body into a misty cloud, granting flight and other benefits.",
+                        School = School_Type.transmutation,
+                        Components = "V, S, M (a bit of gauze and a wisp of smoke)",
+                        SComponents = null,
+                        SpellLevel = 3
+                    },
+                    new Spell
+                    {
+                        Name = "Fear",
+                        Description = "Instills fear in creatures within a certain radius, causing them to become frightened.",
+                        School = School_Type.enchantment,
+                        Components = "V, S, M (a white feather or the heart of a hen)",
+                        SComponents = null,
+                        SpellLevel = 3
+                    },
+                    new Spell
+                    {
+                        Name = "Sleet Storm",
+                        Description = "Creates a freezing rain and hailstorm in a targeted area, causing difficult terrain and damaging creatures.",
+                        School = School_Type.conjuration,
+                        Components = "V, S, M (a pinch of dust and a few drops of water)",
+                        SComponents = null,
+                        SpellLevel = 3
+                    },
+                    new Spell
+                    {
+                        Name = "Levitate",
+                        Description = "Allows the target to rise vertically into the air and remain suspended for the duration.",
+                        School = School_Type.transmutation,
+                        Components = "V, S, M (either a small leather loop or a piece of golden wire bent into a cup shape with a long shank on one end)",
+                        SComponents = null,
+                        SpellLevel = 2
+                    },
+                    new Spell
+                    {
+                        Name = "Dimension Door",
+                        Description = "Teleports the caster up to 500 feet to a location they can visualize or specify.",
+                        School = School_Type.conjuration,
+                        Components = "V",
+                        SComponents = null,
+                        SpellLevel = 4
+                    },
+                    new Spell
+                    {
+                        Name = "Ice Storm",
+                        Description = "Causes a violent hailstorm in a targeted area, damaging creatures and objects.",
+                        School = School_Type.evocation,
+                        Components = "V, S, M (a pinch of dust and a few drops of water)",
+                        SComponents = null,
+                        SpellLevel = 4
+                    },
+                    new Spell
+                    {
+                        Name = "Polymorph",
+                        Description = "Transforms a creature into a different form, altering its statistics and abilities.",
+                        School = School_Type.transmutation,
+                        Components = "V, S, M (a caterpillar cocoon)",
+                        SComponents = null,
+                        SpellLevel = 4
+                    },
+                    new Spell
+                    {
+                        Name = "Dominate Person",
+                        Description = "Allows the caster to exert control over a humanoid creature, influencing its actions and thoughts.",
+                        School = School_Type.enchantment,
+                        Components = "V, S",
+                        SComponents = null,
+                        SpellLevel = 5
+                    },
+                    new Spell
+                    {
+                        Name = "Wall of Stone",
+                        Description = "Creates a sturdy wall of stone to provide cover or block passage.",
+                        School = School_Type.evocation,
+                        Components = "V, S, M (a small block of granite)",
+                        SComponents = null,
+                        SpellLevel = 5
+                    } 
+            };
+
+        
 
             var clases = new List<Class>()
             {

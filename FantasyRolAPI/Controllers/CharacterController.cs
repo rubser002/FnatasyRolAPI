@@ -142,37 +142,7 @@ namespace FantasyRolAPI.Controllers
             }
         }
 
-        [HttpPost("AddSpellToCharacter")]
-        public async Task<IActionResult> AddSpellToCharacter(Guid characterId, Guid spellId)
-        {
-            try
-            {
-                
-                await _characterService.AddSpellToCharacter(characterId, spellId);
-
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpPost("DeleteSpellToCharacter")]
-        public async Task<IActionResult> DeleteSpellToCharacter(Guid characterId, Guid spellId)
-        {
-            try
-            {
-
-                await _characterService.DeleteSpellToCharacter(characterId, spellId);
-
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        
         [HttpPost("DeleteItem")]
         public async Task<IActionResult> DeleteItem(Guid itemId)
         {

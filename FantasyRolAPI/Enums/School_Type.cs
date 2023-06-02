@@ -8,6 +8,8 @@
         illusion=3,
         conjuration=4,
         evocation=5,
-        transmutation=6
+        transmutation=6,
+        enchantment=7,
+        divination=8
     }
 }
